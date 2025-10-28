@@ -1,6 +1,8 @@
 # multipla-poc
-
-Create an iOS application using the MultipeerConnectivity framework for local peer-to-peer communication.
+prompt:
+```
+Create ios application using Multipeer Connectivity framework for local peer-to-peer communication. it will work in host streamer-viewer mode where hots app uses camera to stream real time video to the viewer. To perform host-viewer pairing devices need to be in close proximity. Streamed video stream uses Multipeer Connectivity
+```
 
 This repository contains a small proof-of-concept (PoC) showing a host (streamer) — viewer pair. The host app captures camera frames, compresses them to JPEG (PoC), and sends them to connected viewers using Multipeer Connectivity. Devices pair locally (nearby) and then exchange video frames over the peer-to-peer connection.
 
@@ -49,4 +51,3 @@ Notes:
 - This PoC now implements an H.264 encoding + streaming path using `VTCompressionSession` and MCSession streams. The Host starts an OutputStream to the connected peer and writes length-prefixed NAL data. The Viewer parses incoming length-prefixed packets, builds a CMFormatDescription from SPS/PPS, and uses `VTDecompressionSession` to decode frames.
 - This is a proof-of-concept: the VideoToolbox paths are low-level and may need additional tuning (bitrate, keyframe interval, handling partial packets across stream reads). Run on real devices.
 
-If you want, I can now generate a complete `.xcodeproj` for you and wire these files in, or I can refine encoder settings and improve packetization/robustness (e.g., add RTP-like framing, sequence numbers, SPS/PPS retransmit, jitter buffer). Which should I do next?
